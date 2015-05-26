@@ -7,7 +7,7 @@ The FETCH button kicks off a series of HTTP requests to Github API. The HTTP req
 
 ![alt tag](http://randomdotnext.com/content/images/2015/05/demo-github-android.gif)
 
-
+See my blog post for the full story: [http://randomdotnext.com/retrofit-rxjava/]
 
 #####The Setup
 Let's take care of the depency injection for retrofit and RxJava/RxAndroid:
@@ -146,8 +146,8 @@ Viola! We have just made our non-blocking HTTP calls on Android. Special thanks 
 
 <br>
 #####Reference:
-Code on github: [https://goo.gl/DGMF2F]
-Square Retrofit Doc: [http://goo.gl/UwksBu]
-RxJava Doc: [https://goo.gl/5AqMNi]
-Github API: [https://goo.gl/7nsdh0]
+Code on github: [https://goo.gl/DGMF2F] <br>
+Square Retrofit Doc: [http://goo.gl/UwksBu] <br>
+RxJava Doc: [https://goo.gl/5AqMNi] <br>
+Github API: [https://goo.gl/7nsdh0] <br>
 CardView/RecycleView UI Reference: [http://goo.gl/stNj2J]
