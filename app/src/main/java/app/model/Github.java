@@ -1,16 +1,19 @@
 package app.model;
 
 public class Github {
-    //todo: implement Github model
     private String login;
-    private String created_at;
     private String blog;
+    private int public_repos;
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public String getBlog() {
+        return blog;
+    }
+
+    public int getPublicRepos() {
+        return public_repos;
     }
 }

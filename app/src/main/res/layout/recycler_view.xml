@@ -22,17 +22,25 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:textSize="20sp"
-                    android:text="Test"/>
+                    android:textSize="18sp"/>
 
             <TextView
+                    android:id="@+id/repos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:layout_below="@id/login"
-                    android:textSize="15sp"
-                    android:text="tmp"/>
+                    android:textSize="12sp"/>
+
+            <TextView
+                    android:id="@+id/blog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:layout_below="@id/repos"
+                    android:textSize="12sp"/>
         </LinearLayout>
 
 
