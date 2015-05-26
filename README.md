@@ -145,13 +145,9 @@ This Subscriber responds to the Observable's stream. onNext is called when the R
 Viola! We have just made our non-blocking HTTP calls on Android. Special thanks to the folks at Square and ReactiveX for making our lives easier!
 
 <br>
-#####Reference: 
-Code on github: https://github.com/ruler88/GithubDemo
-
-Square Retrofit Doc: http://square.github.io/retrofit/
-
-RxJava Doc: https://github.com/ReactiveX/RxJava/wiki
-
-Github API: https://developer.github.com/guides/getting-started/#overview
-
-CardView/RecycleView UI Reference: http://icetea09.com/blog/2014/12/19/android-cardview-and-recyclerview-in-material-design/
+#####Reference:
+Code on github: [https://goo.gl/DGMF2F]
+Square Retrofit Doc: [http://goo.gl/UwksBu]
+RxJava Doc: [https://goo.gl/5AqMNi]
+Github API: [https://goo.gl/7nsdh0]
+CardView/RecycleView UI Reference: [http://goo.gl/stNj2J]
