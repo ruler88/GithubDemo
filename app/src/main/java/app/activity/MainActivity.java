@@ -8,12 +8,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.githubdemo.app.R;
+
 import app.Data;
 import app.adapter.CardAdapter;
 import app.model.Github;
+import app.rx.RetryWithIncreasingDelay;
 import app.service.GithubService;
 import app.service.ServiceFactory;
-import com.example.githubdemo.app.R;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -53,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
                     service.getUser(login)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .retryWhen(new RetryWithIncreasingDelay(3,3000,false))
                         .subscribe(new Subscriber<Github>() {
                             @Override
                             public final void onCompleted() {
