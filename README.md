@@ -91,6 +91,7 @@ for(String login : Data.githubList) {
     service.getUser(login)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
+        .retryWhen(new RetryWithIncreasingDelay(3,3000,false))
         .subscribe(new Subscriber<Github>() {
             @Override
             public final void onCompleted() {
@@ -119,6 +120,10 @@ GithubService Interface has the getUser method which returns an Observable. We a
 .observeOn(AndroidSchedulers.mainThread())
 ```
 These two lines specify that the REST call will be made in a new thread (YES!). And when the call response returns, it call the onNext, onError, and onComplete methods on the mainThread. The reason we need to call them on the mainThread is that only the mainThread can update the UI. If you have data that do not need to be displayed immediately, you would not need to observe on main thread. The difference between observeOn and subscribeOn is best explained in this [stackoverflow](http://stackoverflow.com/questions/20451939/observeon-and-subscribeon-where-the-work-is-being-done).
+```java
+.retryWhen(new RetryWithIncreasingDelay(3,3000,false))
+```
+This line returns an Observable that emits the same values as the source observable with the exception of an onError.
 
 ```java
 new Subscriber<Github>() {
