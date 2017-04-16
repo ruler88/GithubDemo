@@ -1,6 +1,6 @@
 ### GithubDemo
 
-#####Introduction
+##### Introduction
 GithubDemo showcases the use of Square's [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava/wiki) to make asynchronous HTTP Requests in Android Application. The App makes HTTP GET requests to the [Github API](https://developer.github.com/guides/getting-started/#overview) to retrieve **public repo count** and **blog URL**.
 
 The FETCH button kicks off a series of HTTP requests to Github API. The HTTP requests are built via Retrofit. The calls are made asynchronously through RxJava. Notice that the cards are laid out in different order each time the button is pressed. You are seeing async threading at work! Each card is rendered when the result comes back from a GET request.
@@ -9,7 +9,7 @@ The FETCH button kicks off a series of HTTP requests to Github API. The HTTP req
 
 See my blog post for the full story: [http://randomdotnext.com/retrofit-rxjava/]
 
-#####The Setup
+##### The Setup
 Let's take care of the depency injection for retrofit and RxJava/RxAndroid:
 ```java
 dependencies {
@@ -24,7 +24,7 @@ Don't forget Android App Permissions in AndroidManifest:
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-#####Retrofit Service/Model
+##### Retrofit Service/Model
 Retrofit uses a Java interface as proxy for the REST API calls. All we have to do is to define the @GET method and the url/path. The following code makes a GET request to the Github URL and returns an Observable. The Observable object is used by RxJava to do stream processing (I'll explain this later).
 ```java
 public interface GithubService {
@@ -82,7 +82,7 @@ And you are done! Other than Java's boilerplate stuff (boo), the code is very co
 
 
 
-#####RxJava Async Stream
+##### RxJava Async Stream
 The [Observable](http://reactivex.io/documentation/observable.html) object from our GithubService streams data when it becomes available. We need to have an Subscriber (sometimes called Observer) to watch for the data stream changes. Conceptually, the Subscriber subscribes to an Observable. The following block of code performs the entire process described.
 
 ```java
@@ -141,11 +141,11 @@ new Subscriber<Github>() {
 This Subscriber responds to the Observable's stream. onNext is called when the REST call receives data. In this Github example, there is only 1 item, so it is only called once. When the REST response is a list, the code can be called each time an item is received. onComplete and onError behave exactly as the name implies.
 
 
-#####We are done
+##### We are done
 Viola! We have just made our non-blocking HTTP calls on Android. Special thanks to the folks at Square and ReactiveX for making our lives easier!
 
 <br>
-#####Reference:
+##### Reference:
 Code on github: [https://goo.gl/DGMF2F] <br>
 Square Retrofit Doc: [http://goo.gl/UwksBu] <br>
 RxJava Doc: [https://goo.gl/5AqMNi] <br>
