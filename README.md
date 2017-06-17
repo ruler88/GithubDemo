@@ -13,9 +13,11 @@ See my blog post for the full story: [http://randomdotnext.com/retrofit-rxjava/]
 Let's take care of the depency injection for retrofit and RxJava/RxAndroid:
 ```java
 dependencies {
-    compile 'io.reactivex:rxjava:1.0.+'
-    compile 'io.reactivex:rxandroid:0.23.+'
-    compile 'com.squareup.retrofit:retrofit:1.9.+'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 }
 ```
 
@@ -39,12 +41,12 @@ public interface GithubService {
 Hang on! GithubService needs a RestAdapter implementation. In the spirit of good programming practice, I created a generic factory class to do the implementation:
 ```java
 static <T> T createRetrofitService(final Class<T> clazz, final String endPoint) {
-    final RestAdapter restAdapter = new RestAdapter.Builder()
-            .setEndpoint(endPoint)
-            .build();
-    T service = restAdapter.create(clazz);
-
-    return service;
+		 Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(endPoint)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(clazz);
 }
 ```
 
