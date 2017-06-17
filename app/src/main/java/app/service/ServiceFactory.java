@@ -1,6 +1,9 @@
 package app.service;
 
-import retrofit.RestAdapter;
+
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceFactory {
 
@@ -11,11 +14,14 @@ public class ServiceFactory {
      * @return retrofit service with defined endpoint
      */
     public static <T> T createRetrofitService(final Class<T> clazz, final String endPoint) {
-        final RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint(endPoint)
-                .build();
-        T service = restAdapter.create(clazz);
 
-        return service;
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(endPoint)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(clazz);
+
     }
 }
